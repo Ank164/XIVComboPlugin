@@ -54,6 +54,7 @@ internal static class PLD {
 			GoringBlade = 54,
 			RoyalAuthority = 60,
 			HolySpirit = 64,
+			Requiescat = 68,
 			HolyCircle = 72,
 			Intervene = 74,
 			Atonement = 76,
@@ -77,7 +78,7 @@ internal class PaladinGoringBlade: CustomCombo {
 
 		if (IsEnabled(CustomComboPreset.PaladinRequiescatFeature)) {
 			if (level >= PLD.Levels.HolySpirit) {
-
+				
 				if (IsEnabled(CustomComboPreset.PaladinConfiteorFeature)) {
 					if (level >= PLD.Levels.BladeOfFaith) {
 						if (lastComboMove is PLD.BladeOfTruth)
@@ -159,7 +160,13 @@ internal class PaladinRoyalAuthorityCombo: CustomCombo {
 				}
 
 				Status? requiescat = SelfFindEffect(PLD.Buffs.Requiescat);
-
+				if (IsEnabled(CustomComboPreset.PaladinPaladinRequiescatAuto)) {
+					if (level >= PLD.Levels.Requiescat) {
+						if (IsOffCooldown(PLD.Requiescat)) {
+							return PLD.Requiescat;
+						}
+					}
+				}
 				if (requiescat is not null) {
 
 					if (IsEnabled(CustomComboPreset.PaladinConfiteorFeature)) {
@@ -176,6 +183,10 @@ internal class PaladinRoyalAuthorityCombo: CustomCombo {
 
 		if (lastComboMove is PLD.FastBlade) {
 			if (level >= PLD.Levels.RiotBlade)
+				if (IsOffCooldown(PLD.SpiritsWithin)) {
+					return PLD.SpiritsWithin;
+				}
+
 				return PLD.RiotBlade;
 		}
 		if (lastComboMove is PLD.RiotBlade) {
@@ -240,7 +251,13 @@ internal class PaladinProminenceCombo: CustomCombo {
 				}
 
 				Status? requiescat = SelfFindEffect(PLD.Buffs.Requiescat);
-
+				if (IsEnabled(CustomComboPreset.PaladinPaladinRequiescatAuto)) {
+					if (level >= PLD.Levels.Requiescat) {
+						if (IsOffCooldown(PLD.Requiescat)) {
+							return PLD.Requiescat;
+						}
+					}
+				}
 				if (requiescat is not null) {
 
 					if (IsEnabled(CustomComboPreset.PaladinConfiteorFeature)) {

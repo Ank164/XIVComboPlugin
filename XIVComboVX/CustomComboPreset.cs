@@ -630,6 +630,9 @@ public enum CustomComboPreset {
 	[CustomComboInfo("Intervene Level Sync", "Replace Intervene with Shield Lob when under level.", PLD.JobID)]
 	PaladinInterveneSyncFeature = 1906,
 
+	[CustomComboInfo("Requiescat Automation", "Adds requiescat to Royal Authority and AOE combos.", PLD.JobID)]
+	PaladinPaladinRequiescatAuto = 1914,
+	
 	#endregion
 	// ====================================================================================
 	#region RED MAGE (35xx)
