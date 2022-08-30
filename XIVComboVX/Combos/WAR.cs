@@ -21,12 +21,14 @@ internal static class WAR {
 		Decimate = 3550,
 		RawIntuition = 3551,
 		Equilibrium = 3552,
+		Upheaval = 7387,
 		InnerRelease = 7389,
 		MythrilTempest = 16462,
 		ChaoticCyclone = 16463,
 		NascentFlash = 16464,
 		InnerChaos = 16465,
 		Bloodwhetting = 25751,
+		Orogeny = 25752,
 		PrimalRend = 25753;
 
 	public static class Buffs {
@@ -58,12 +60,14 @@ internal static class WAR {
 			RawIntuition = 56,
 			Equilibrium = 58,
 			Decimate = 60,
+			Upheaval = 64,
 			InnerRelease = 70,
 			ChaoticCyclone = 72,
 			MythrilTempestTrait = 74,
 			NascentFlash = 76,
 			InnerChaos = 80,
 			Bloodwhetting = 82,
+			Orogeny = 86,
 			PrimalRend = 90;
 	}
 }
@@ -77,6 +81,13 @@ internal class WarriorStormsPathCombo: CustomCombo {
 	public override uint[] ActionIDs { get; } = new[] { WAR.StormsPath };
 
 	protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level) {
+
+		if (IsEnabled(CustomComboPreset.WarriorSmartWeaveSingleTargetPath)) {
+			if (level >= WAR.Levels.Upheaval) {
+				if (CanWeave(actionID) && CanUse(WAR.Upheaval))
+					return WAR.Upheaval;
+			}
+		}
 
 		if (IsEnabled(CustomComboPreset.WarriorInnerReleaseFeature) && level >= WAR.Levels.InnerRelease && SelfHasEffect(WAR.Buffs.InnerRelease))
 			return OriginalHook(WAR.FellCleave);
@@ -120,6 +131,13 @@ internal class WarriorStormsEyeCombo: CustomCombo {
 
 	protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level) {
 
+		if (IsEnabled(CustomComboPreset.WarriorSmartWeaveSingleTargetEye)) {
+			if (level >= WAR.Levels.Upheaval) {
+				if (CanWeave(actionID) && CanUse(WAR.Upheaval))
+					return WAR.Upheaval;
+			}
+		}
+
 		if (IsEnabled(CustomComboPreset.WarriorInnerReleaseFeature)) {
 			if (level >= WAR.Levels.InnerRelease) {
 				if (SelfHasEffect(WAR.Buffs.InnerRelease))
@@ -155,6 +173,13 @@ internal class WarriorMythrilTempestCombo: CustomCombo {
 	public override uint[] ActionIDs { get; } = new[] { WAR.MythrilTempest };
 
 	protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level) {
+
+		if (IsEnabled(CustomComboPreset.WarriorSmartWeaveAOE)) {
+			if (level >= WAR.Levels.Orogeny) {
+				if (CanWeave(actionID) && CanUse(WAR.Orogeny))
+					return WAR.Orogeny;
+			}
+		}
 
 		if (IsEnabled(CustomComboPreset.WarriorInnerReleaseFeature)) {
 			if (SelfHasEffect(WAR.Buffs.InnerRelease))

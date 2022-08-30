@@ -12,7 +12,9 @@ internal static class GNB {
 		DemonSlice = 16141,
 		SolidBarrel = 16145,
 		GnashingFang = 16146,
+		SavageClaw = 16147,
 		DemonSlaughter = 16149,
+		WickedTalon = 16150,
 		SonicBreak = 16153,
 		Continuation = 16155,
 		JugularRip = 16156,
@@ -47,6 +49,7 @@ internal static class GNB {
 			BurstStrike = 30,
 			DemonSlaughter = 40,
 			SonicBreak = 54,
+			GnashingFang = 60,
 			BowShock = 62,
 			Continuation = 70,
 			FatedCircle = 72,
@@ -95,22 +98,48 @@ internal class GunbreakerSolidBarrel: CustomCombo {
 }
 
 internal class GunbreakerGnashingFang: CustomCombo {
-	public override CustomComboPreset Preset => CustomComboPreset.GunbreakerGnashingFangCont;
+	public override CustomComboPreset Preset => CustomComboPreset.GnbAny;
 	public override uint[] ActionIDs { get; } = new[] { GNB.GnashingFang };
 
 	protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level) {
 
-		if (level >= GNB.Levels.Continuation) {
+		if (IsEnabled(CustomComboPreset.GunbreakerGnashingFangCont)) {
+			if (level >= GNB.Levels.Continuation) {
 
-			if (SelfHasEffect(GNB.Buffs.ReadyToGouge))
-				return GNB.EyeGouge;
+				if (SelfHasEffect(GNB.Buffs.ReadyToGouge))
+					return GNB.EyeGouge;
 
-			if (SelfHasEffect(GNB.Buffs.ReadyToTear))
-				return GNB.AbdomenTear;
+				if (SelfHasEffect(GNB.Buffs.ReadyToTear))
+					return GNB.AbdomenTear;
 
-			if (SelfHasEffect(GNB.Buffs.ReadyToRip))
-				return GNB.JugularRip;
+				if (SelfHasEffect(GNB.Buffs.ReadyToRip))
+					return GNB.JugularRip;
 
+			}
+		}
+
+		if (IsEnabled(CustomComboPreset.GunbreakerGnashingStrikeFeature)) {
+
+			// no level checks because GF/SC/WT are all unlocked at the same level
+			if (lastComboMove is GNB.GnashingFang or GNB.JugularRip)
+				return GNB.SavageClaw;
+			if (lastComboMove is GNB.SavageClaw or GNB.AbdomenTear)
+				return GNB.WickedTalon;
+
+			if (SelfHasEffect(GNB.Buffs.NoMercy)) {
+				if (level < GNB.Levels.GnashingFang || GetCooldown(GNB.GnashingFang).CooldownRemaining > Service.Configuration.GunbreakerGnashingStrikeCooldownGnashingFang) {
+					if (level < GNB.Levels.DoubleDown || GetCooldown(GNB.DoubleDown).CooldownRemaining > Service.Configuration.GunbreakerGnashingStrikeCooldownDoubleDown) {
+
+						if (level >= GNB.Levels.EnhancedContinuation && IsEnabled(CustomComboPreset.GunbreakerBurstStrikeCont)) {
+							if (SelfHasEffect(GNB.Buffs.ReadyToBlast)) {
+								return GNB.Hypervelocity;
+							}
+						}
+
+						return GNB.BurstStrike;
+					}
+				}
+			}
 		}
 
 		return OriginalHook(GNB.GnashingFang);

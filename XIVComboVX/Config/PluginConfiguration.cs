@@ -91,7 +91,23 @@ public class PluginConfiguration: IPluginConfiguration {
 
 	#region GNB settings
 
-	// placeholder
+	[ComboDetailSetting(
+		CustomComboPreset.GunbreakerGnashingStrikeFeature,
+		"Gnashing Fang cooldown threshold",
+		"Only become Burst Strike if Gnashing Fang's cooldown has at least this long left",
+		0,
+		30
+	)]
+	public float GunbreakerGnashingStrikeCooldownGnashingFang { get; set; } = 20;
+
+	[ComboDetailSetting(
+		CustomComboPreset.GunbreakerGnashingStrikeFeature,
+		"Double Down cooldown threshold",
+		"Only become Burst Strike if Double Down's cooldown has at least this long left",
+		0,
+		60
+	)]
+	public float GunbreakerGnashingStrikeCooldownDoubleDown { get; set; } = 20;
 
 	#endregion
 

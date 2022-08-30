@@ -378,6 +378,10 @@ public enum CustomComboPreset {
 	[CustomComboInfo("Double Down Feature", "Replace Burst Strike and Fated Circle with Double Down when available.", GNB.JobID)]
 	GunbreakerDoubleDownFeature = 3709,
 
+	[Experimental]
+	[CustomComboInfo("Gnashing Strike Feature", "Replace Gnashing Fang with Burst Strike when No Mercy is active and Gnashing Fang and Double Down are on cooldown, or you are too low level to use them.", GNB.JobID)]
+	GunbreakerGnashingStrikeFeature = 3714,
+
 	#endregion
 	// ====================================================================================
 	#region MACHINIST (31xx)
@@ -423,18 +427,17 @@ public enum CustomComboPreset {
 	MonkAoECombo = 2000,
 
 	[ParentPreset(MonkAoECombo)]
-	[CustomComboInfo("AoE Combo: Destroyer", "Replaces (Arm/Shadow) of the Destroyer with the AoE combo chain.", MNK.JobID)]
+	[CustomComboInfo("On Destroyer", "Replaces (Arm/Shadow) of the Destroyer with the AoE combo chain.", MNK.JobID)]
 	MonkAoECombo_Destroyers = 2099,
 
 	[ParentPreset(MonkAoECombo)]
-	[CustomComboInfo("AoE Combo: Masterful Blitz", "Replaces Masterful Blitz with the AoE combo chain.", MNK.JobID)]
+	[CustomComboInfo("On Masterful Blitz", "Replaces Masterful Blitz with the AoE combo chain.", MNK.JobID)]
 	MonkAoECombo_MasterBlitz = 2098,
 
 	[ParentPreset(MonkAoECombo)]
-	[CustomComboInfo("AoE Combo: Rockbreaker", "Replaces Rockbreaker with the AoE combo chain.", MNK.JobID)]
+	[CustomComboInfo("On Rockbreaker", "Replaces Rockbreaker with the AoE combo chain.", MNK.JobID)]
 	MonkAoECombo_Rockbreaker = 2097,
 
-	[Experimental]
 	[CustomComboInfo("Monk ST Combo", "Replace Bootshine with all single-target rotation actions", MNK.JobID)]
 	MonkSTCombo = 2017,
 
@@ -450,10 +453,10 @@ public enum CustomComboPreset {
 	[CustomComboInfo("Steel Peak / Forbidden Chakra Feature", "Replace Dragon Kick with Meditation / Steel Peak / The Forbidden Chakra when in of combat and the Fifth Chakra is open.", MNK.JobID)]
 	MonkDragonKickSteelPeakFeature = 2016,
 
-	[CustomComboInfo("Twin Snakes to True Strike Feature", "Replaces Twin Snakes with True Strike if Disciplined Fist is up.", MNK.JobID)]
+	[CustomComboInfo("Twin Snakes to True Strike Feature", "Replaces Twin Snakes with True Strike if Disciplined Fist is up.\nAlso applies to the ST combo feature.", MNK.JobID)]
 	MonkTwinSnakesFeature = 2010,
 
-	[CustomComboInfo("Demolish to Snap Punch Feature", "Replaces Demolish with Snap Punch if target is under Demolish.", MNK.JobID)]
+	[CustomComboInfo("Demolish to Snap Punch Feature", "Replaces Demolish with Snap Punch if target is under Demolish.\nAlso applies to the ST combo feature.", MNK.JobID)]
 	MonkDemolishFeature = 2011,
 
 	[CustomComboInfo("Howling Fist / Meditation Feature", "Replaces Howling Fist with Meditation when the Fifth Chakra is not open.", MNK.JobID)]
@@ -1072,6 +1075,10 @@ public enum CustomComboPreset {
 	WarriorStormsPathCombo = 2100,
 
 	[ParentPreset(WarriorStormsPathCombo)]
+	[CustomComboInfo("Smart Weave", "Automatically turn into Upheaval when weaving won't drift your GCD.", WAR.JobID)]
+	WarriorSmartWeaveSingleTargetPath = 2116,
+
+	[ParentPreset(WarriorStormsPathCombo)]
 	[CustomComboInfo("Gauge Overcap Saver: Storm's Path", "Replace the Storm's Path combo with gauge spender if completing the combo would overcap you.", WAR.JobID)]
 	WarriorGaugeOvercapPathFeature = 2103,
 
@@ -1083,11 +1090,19 @@ public enum CustomComboPreset {
 	WarriorStormsEyeCombo = 2101,
 
 	[ParentPreset(WarriorStormsEyeCombo)]
+	[CustomComboInfo("Smart Weave", "Automatically turn into Upheaval when weaving won't drift your GCD.", WAR.JobID)]
+	WarriorSmartWeaveSingleTargetEye = 2117,
+
+	[ParentPreset(WarriorStormsEyeCombo)]
 	[CustomComboInfo("Gauge Overcap Saver: Storm's Eye", "Replace the Storm's Eye combo with gauge spender if completing the combo would overcap you.", WAR.JobID)]
 	WarriorGaugeOvercapEyeFeature = 2110,
 
 	[CustomComboInfo("Mythril Tempest Combo", "Replace Mythril Tempest with its combo chain.", WAR.JobID)]
 	WarriorMythrilTempestCombo = 2102,
+
+	[ParentPreset(WarriorMythrilTempestCombo)]
+	[CustomComboInfo("Smart Weave", "Automatically turn into Orogeny when weaving won't drift your GCD.", WAR.JobID)]
+	WarriorSmartWeaveAOE = 2118,
 
 	[ParentPreset(WarriorMythrilTempestCombo)]
 	[CustomComboInfo("Gauge Overcap Saver: Mythril Tempest", "Replace the Mythril Tempest combo with gauge spender if completing the combo would overcap you.", WAR.JobID)]
