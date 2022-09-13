@@ -369,7 +369,7 @@ public enum CustomComboPreset {
 	GunbreakerNoMercyDoubleDownFeature = 3712,
 
 	[Conflicts(GunbreakerNoMercyFeature)]
-	[CustomComboInfo("No Mercy - Always Double Down", "Replace No Mercy with Double Down while No Mercy is active.", GNB.JobID)]
+	[CustomComboInfo("Always Double Down", "Replace No Mercy with Double Down while No Mercy is active.", GNB.JobID)]
 	GunbreakerNoMercyAlwaysDoubleDownFeature = 3713,
 
 	[CustomComboInfo("Bow Shock / Sonic Break Swap", "Replace Bow Shock and Sonic Break with one or the other, depending on which is on cooldown.", GNB.JobID)]
@@ -378,10 +378,65 @@ public enum CustomComboPreset {
 	[CustomComboInfo("Double Down Feature", "Replace Burst Strike and Fated Circle with Double Down when available.", GNB.JobID)]
 	GunbreakerDoubleDownFeature = 3709,
 
-	[Experimental]
 	[CustomComboInfo("Gnashing Strike Feature", "Replace Gnashing Fang with Burst Strike when No Mercy is active and Gnashing Fang and Double Down are on cooldown, or you are too low level to use them.", GNB.JobID)]
 	GunbreakerGnashingStrikeFeature = 3714,
 
+	[ParentPreset(GunbreakerSolidBarrelCombo)]
+	[CustomComboInfo("Lighting Shot Ranged Uptime Feature", "Replace Solid Barrel with Lightning Shot when out of melee range and in combat.", GNB.JobID)]
+	GunbreakerRangedUptime = 3715,
+
+	[ParentPreset(GunbreakerSolidBarrelCombo)]
+	[CustomComboInfo("No Mercy Feature", "Replace Solid Barrel with No Mercy when Gnashing Fang is ready.", GNB.JobID)]
+	GunbreakerSolidNoMercy = 3716,
+	
+	[ParentPreset(GunbreakerSolidBarrelCombo)]
+	[CustomComboInfo("Bloodfest Feature", "Replace Solid Barrel with Bloodfest when there is no ammo and you are under No Mercy.", GNB.JobID)]
+	GunbreakerSolidBloodfest = 3717,
+
+	[ParentPreset(GunbreakerSolidBarrelCombo)]
+	[CustomComboInfo("Danger Zone/Blasting Zone Feature", "Replace Solid Barrel with Danger Zone/Blasting Zone after Gnashing Fang is used.", GNB.JobID)]
+	GunbreakerSolidDangerZone = 3718,
+
+	[ParentPreset(GunbreakerSolidBarrelCombo)]
+	[CustomComboInfo("Gnashing Fang/Continuation Feature", "Replace Solid Barrel with Gnashing Fang and Continuation when Gnashing Fang is available and will hold for No Mercy when it is available.", GNB.JobID)]
+	GunbreakerSolidGnashingFang = 3719,
+
+	[ParentPreset(GunbreakerSolidBarrelCombo)]
+	[CustomComboInfo("Bow Shock Feature", "Replace Solid Barrel with Bow Shock when you are under No Mercy.", GNB.JobID)]
+	GunbreakerSolidBowShock = 3720,
+
+	[ParentPreset(GunbreakerSolidBarrelCombo)]
+	[CustomComboInfo("Sonic Break Feature", "Replace Solid Barrel with Sonic Break when you are under No Mercy.", GNB.JobID)]
+	GunbreakerSolidSonicBreak = 3721,
+
+	[ParentPreset(GunbreakerSolidBarrelCombo)]
+	[CustomComboInfo("Double Down Feature", "Replace Solid Barrel with Double Down when you are under No Mercy and have the required ammo.", GNB.JobID)]
+	GunbreakerSolidDoubleDown = 3722,
+
+	[ParentPreset(GunbreakerSolidBarrelCombo)]
+	[CustomComboInfo("Rough Divide Feature", "Replace Solid Barrel with Rough Divide when you are within the target's hitbox, not moving, and have the No Mercy buff.", GNB.JobID)]
+	GunbreakerSolidRoughDivide = 3723,
+
+	[ParentPreset(GunbreakerGnashingFangCont)]
+	[CustomComboInfo("No Mercy Feature", "Replace Gnashing Fang with No Mercy when both No Mercy and Gnashing Fang are ready to be used.", GNB.JobID)]
+	GunbreakerGnashingFangNoMercy = 3724,
+
+	[ParentPreset(GunbreakerGnashingFangCont)]
+	[CustomComboInfo("Danger Zone/Blasting Zone Feature", "Replace Gnashing Fang with Danger Zone/Blasting Zone when available.", GNB.JobID)]
+	GunbreakerGnashingFangDangerZone = 3725,
+
+	[ParentPreset(GunbreakerGnashingFangCont)]
+	[CustomComboInfo("Bow Shock Feature", "Replace Gnashing Fang with Bow Shock when available and when you are under No Mercy.", GNB.JobID)]
+	GunbreakerGnashingFangBowShock = 3726,
+
+	[ParentPreset(GunbreakerGnashingFangCont)]
+	[CustomComboInfo("Double Down Feature", "Replace Gnashing Fang with Double Down when available and when you are under No Mercy and have the required ammo.", GNB.JobID)]
+	GunbreakerGnashingFangDoubleDown = 3727,
+
+	[ParentPreset(GunbreakerGnashingFangCont)]
+	[CustomComboInfo("Sonic Break Feature", "Replace Gnashing Fang with Sonic Break when available and when you are under No Mercy.", GNB.JobID)]
+	GunbreakerGnashingFangSonicBreak = 3728,
+	
 	#endregion
 	// ====================================================================================
 	#region MACHINIST (31xx)
