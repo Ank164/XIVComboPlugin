@@ -15,6 +15,8 @@ internal static class MCH {
 		HeatedSlugshot = 7412,
 		// Charges
 		GaussRound = 2874,
+		Reassemble= 2876,
+
 		Ricochet = 2890,
 		// AoE
 		SpreadShot = 2870,
@@ -47,6 +49,7 @@ internal static class MCH {
 	public static class Levels {
 		public const byte
 			SlugShot = 2,
+			Reassemble = 10,
 			GaussRound = 15,
 			CleanShot = 26,
 			Hypercharge = 30,
@@ -171,7 +174,9 @@ internal class MachinistDrillAirAnchorFeature: CustomCombo {
 	public override uint[] ActionIDs { get; } = new[] { MCH.HotShot, MCH.AirAnchor, MCH.Drill };
 
 	protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level) {
-
+		if (CanUse(MCH.Reassemble)) {
+			return  MCH.Reassemble;
+		}
 		if (level >= MCH.Levels.Chainsaw && IsEnabled(CustomComboPreset.MachinistDrillAirAnchorPlus)) {
 			return GetJobGauge<MCHGauge>().Battery > 80
 				? PickByCooldown(MCH.Drill, MCH.Chainsaw, MCH.AirAnchor, MCH.Drill)
@@ -184,7 +189,7 @@ internal class MachinistDrillAirAnchorFeature: CustomCombo {
 				: PickByCooldown(MCH.AirAnchor, MCH.Drill, MCH.AirAnchor);
 		}
 
-		if (level >= MCH.Levels.Drill)
+		if (level >=MCH.Levels.Drill)
 			return PickByCooldown(actionID, MCH.HotShot, MCH.Drill);
 
 		return MCH.HotShot;

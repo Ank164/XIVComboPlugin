@@ -183,10 +183,7 @@ internal class PaladinRoyalAuthorityCombo: CustomCombo {
 
 		if (lastComboMove is PLD.FastBlade) {
 			if (level >= PLD.Levels.RiotBlade)
-				if (IsOffCooldown(PLD.SpiritsWithin)) {
-					return PLD.SpiritsWithin;
-				}
-
+				
 				return PLD.RiotBlade;
 		}
 		if (lastComboMove is PLD.RiotBlade) {
